@@ -1,0 +1,19 @@
+{
+  "name": "project3",
+  "version": "1.0.0",
+  "description": "UCLA BootCamp - Project 3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EternalVigil/project3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EternalVigil/project3/issues"
+  },
+  "homepage": "https://github.com/EternalVigil/project3#readme"
+}
