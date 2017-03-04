@@ -1,0 +1,1 @@
+//Ensure auth and get home route "/"
