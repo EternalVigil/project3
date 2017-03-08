@@ -30,7 +30,8 @@ app.use(express.static(path.join(__dirname,"public")));
 // MongoDB Configuration
 // -------------------------------------------------
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost/codespiration");
+var mongoURL = process.env.MONGO || "mongodb://localhost/codespiration"
+mongoose.connect(mongoURL);
 var db = mongoose.connection;
 
 db.on("error", function(err) {
