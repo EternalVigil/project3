@@ -8,7 +8,7 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 // var morgan = require("morgan");
 // var passport = require("passport");
-// var path = require("path");
+var path = require("path");
 // var session = require("express-session");
 
 // Create Instance of Express
@@ -29,6 +29,7 @@ app.use(express.static(path.join(__dirname,"public")));
 
 // MongoDB Configuration
 // -------------------------------------------------
+mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost/codespiration");
 var db = mongoose.connection;
 
@@ -47,7 +48,17 @@ db.once("open", function() {
 
 // Middleware for Routes
 // -------------------------------------------------
-app.use("/", controllers);
+// var ideaRoutes = require("./server/controllers/idea-api-routes.js");
+// var projectRoutes = require("./server/controllers/project-api-routes.js");
+// var techRoutes = require("./server/controllers/tech-api-routes.js");
+var userRoutes = require("./server/controllers/user-api-routes.js");
+
+// app.use("/idea", ideaRoutes);
+// app.use("/project", projectRoutes);
+// app.use("/tech", techRoutes);
+app.use("/user", userRoutes);
+
+// app.use("/", controllers);
 
 
 // Listener

@@ -6,37 +6,36 @@ var UserSchema = new Schema({
 	
 	firstName: { 
 		type: Schema.Types.String,
-		required: true
+		required: [true, "Please enter your first name."]
 	},
 	lastName: {
 		type: Schema.Types.String,
-		required: true
+		required: [true, "Please enter your last name."]
 	},
 	username: {
 		type: Schema.Types.String,
-		required: true
-	}
+		required: [true, "Please enter your  name."],
+		lowercase: true,
+		unique: [true, "Username taken."]
+	},
 	password: {
 		type: Schema.Types.String,
-		required: true
+		required: [true, "Please enter a password."]
 	},
 	email: {
 		type: Schema.Types.String,
-		required: true
+		required: [true, "Please enter your first name."],
+		unique: [true, "Email already used."]
 	},
 	github: {
 		type: Schema.Types.String,	
 		required: false
-	},
-	createdAt: {
-		type: Schema.Types.Date,
-		default: Date.now
 	}
-	updatedAt: {
-		type: Schema.Types.Date,
-		default: Date.now
-	}
-});
+}, {
+	timestamps: {createdAt: "createdAt", updatedAt: "updatedAt"},
+	toJSON: {getters: true} //both path and virtual getters
+}
+);
 
 var User = mongoose.model("User", UserSchema);
 
