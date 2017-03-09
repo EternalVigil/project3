@@ -3,21 +3,37 @@ var Schema = mongoose.Schema;
 
 var IdeaSchema = new Schema({
 
-	title: { 
+	name: { 
 		type: Schema.Types.String,
-		required: true
+		required: [true, "Enter an idea name."]
 	},
 	description: {
-		type: Schema.Types.Date
-		required: true
+		type: Schema.Types.Mixed,
+		required: [true, "Enter a description"]
 	},
 	githubExample: {
 		type: Schema.Types.String
 	},
 	timeFrame: {
-		type: Schema.Types.Date
-	}
+		type: Schema.Types.Number,
+		required: [true, "Enter estimated time of completion for the idea."]
+	},
+	author: {
+		type: Schema.Types.ObjectId,
+		ref: "User"
+	},
+	techStack: [{
+		type: Schema.Types.ObjectId,
+		ref: "Tech"
+	}],	
+	projects: [{
+		type: Schema.Types.ObjectId,
+		ref: "Project"
+	}]
 
+}, {
+	timestamps: {createdAt: "createdAt", updatedAt: "updatedAt"},
+	toJSON: {getters: true} //both path and virtual getters
 });
 
 var Idea = mongoose.model("Idea", IdeaSchema);

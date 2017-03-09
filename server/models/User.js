@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 var bcrypt = require("bcryptjs");
 var Schema = mongoose.Schema;
 
+
+//Todo: 
 var UserSchema = new Schema({
 	
 	firstName: { 
@@ -30,7 +32,24 @@ var UserSchema = new Schema({
 	github: {
 		type: Schema.Types.String,	
 		required: false
-	}
+	},
+	knownTechs: [{
+		type: Schema.Types.ObjectId,
+		ref: "Tech"
+	}],	
+	learnTechs: [{
+		type: Schema.Types.ObjectId,
+		ref: "Tech"
+	}],
+	submittedIdeas: [{
+		type: Schema.Types.ObjectId,
+		ref: "Idea"
+	}],	
+	projects: [{
+		type: Schema.Types.ObjectId,
+		ref: "Project"
+	}]
+
 }, {
 	timestamps: {createdAt: "createdAt", updatedAt: "updatedAt"},
 	toJSON: {getters: true} //both path and virtual getters
