@@ -60,7 +60,7 @@ app.use("/project", projectRoutes);
 app.use("/tech", techRoutes);
 app.use("/user", userRoutes);
 
-app.get("/");
+app.get("/*", express.static(path.join(__dirname, './public/index.html')));
 
 
 // Listener
