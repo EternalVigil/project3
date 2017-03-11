@@ -21,7 +21,8 @@ router.post('/api', function(req, res) {
 		name: req.body.name,
 		techType: req.body.techType,
 		frontend: req.body.frontend,
-		backend: req.body.backend
+		backend: req.body.backend,
+		documentation: req.body.documentation
 	})
 	.exec()
 	.then(function(tech) {

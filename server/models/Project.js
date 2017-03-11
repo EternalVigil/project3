@@ -11,7 +11,7 @@ var ProjectSchema = new Schema({
 		default: false
 	},
 	currentProject: {
-		type: Schema.Types.Boolean
+		type: Schema.Types.Boolean,
 		default: false
 	},
 	githubSource: {
