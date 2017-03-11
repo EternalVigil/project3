@@ -33,11 +33,11 @@ var UserSchema = new Schema({
 		type: Schema.Types.String,	
 		required: false
 	},
-	knownTechs: [{
+	knownTech: [{
 		type: Schema.Types.ObjectId,
 		ref: "Tech"
 	}],	
-	learnTechs: [{
+	learnTech: [{
 		type: Schema.Types.ObjectId,
 		ref: "Tech"
 	}],

@@ -11,6 +11,9 @@ var IdeaSchema = new Schema({
 		type: Schema.Types.Mixed,
 		required: [true, "Enter a description"]
 	},
+	rating: {
+		type: Schema.Types.Number
+	},
 	githubExample: {
 		type: Schema.Types.String
 	},

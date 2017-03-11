@@ -39,13 +39,19 @@ router.put('/api/:id', function(req, res) {
 	User.findOneAndUpdate({
 		_id: req.params.id
 	},
-	{ $set: { 
+	{ 	$set: { 
 			firstName: req.body.firstName,
 			lastName: req.body.lastName,
 			username: req.body.username,
 			password: req.body.password,
 			email: req.body.email,
 			github: req.body.github
+		},
+		$push: { 
+			"knownTech": req.body._id,
+			"learnTech": req.body._id,
+			"submittedIdeas": req.body._id,
+			"projects": req.body._id
 		}
 	}, {upsert: true})
 	.exec()
