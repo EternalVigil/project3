@@ -9,6 +9,7 @@ var mongoose = require("mongoose");
 // var morgan = require("morgan");
 // var passport = require("passport");
 var path = require("path");
+var controllers = require('./server/controllers');
 // var session = require("express-session");
 
 // Create Instance of Express
@@ -59,7 +60,7 @@ app.use("/project", projectRoutes);
 app.use("/tech", techRoutes);
 app.use("/user", userRoutes);
 
-// app.use("/", controllers);
+app.get("/");
 
 
 // Listener

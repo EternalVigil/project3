@@ -2,7 +2,7 @@
 import React from "react";
 import "./modal.css";
 
-export default () =>{
+export default () => {
 	return(
 		<div id="signUpModal" className="modal">
 			<div className="modal-content">
