@@ -51,12 +51,12 @@ db.once("open", function() {
 // -------------------------------------------------
 // var ideaRoutes = require("./server/controllers/idea-api-routes.js");
 // var projectRoutes = require("./server/controllers/project-api-routes.js");
-// var techRoutes = require("./server/controllers/tech-api-routes.js");
+var techRoutes = require("./server/controllers/tech-api-routes.js");
 var userRoutes = require("./server/controllers/user-api-routes.js");
 
 // app.use("/idea", ideaRoutes);
 // app.use("/project", projectRoutes);
-// app.use("/tech", techRoutes);
+app.use("/tech", techRoutes);
 app.use("/user", userRoutes);
 
 // app.use("/", controllers);
