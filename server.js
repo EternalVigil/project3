@@ -1,5 +1,7 @@
 // Include Server Dependencies
 // -------------------------------------------------
+var React = require('react');
+
 var express = require("express");
 var bodyParser = require("body-parser");
 // var cookieParser = require("cookie-parser");
@@ -60,7 +62,9 @@ app.use("/project", projectRoutes);
 app.use("/tech", techRoutes);
 app.use("/user", userRoutes);
 
-app.get("/*", express.static(path.join(__dirname, './public/index.html')));
+app.use(express.static(path.join(__dirname, 'static')));
+
+app.get("*", express.static(path.join(__dirname, './public/index.html')));
 
 
 // Listener

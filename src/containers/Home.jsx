@@ -6,9 +6,12 @@ import { footer } from 'react-router';
 class Home extends Component {
 	render(){
 		return(
+				<div>
+				came from Home.jsx
 				{header}
 				{mainHero}
 				{footer}
+				</div>
 			);
 	}
 }
