@@ -11,7 +11,6 @@ var mongoose = require("mongoose");
 // var morgan = require("morgan");
 // var passport = require("passport");
 var path = require("path");
-var controllers = require('./server/controllers');
 
 var session = require("express-session");
 var controllers = require ('./server/controllers');
@@ -54,6 +53,8 @@ db.once("open", function() {
 
 // Middleware for Routes
 // -------------------------------------------------
+var users = require('./server/controllers/user.js');
+var routes = require('./server/controllers/index.js');
 var ideaRoutes = require("./server/controllers/idea-api-routes.js");
 var projectRoutes = require("./server/controllers/project-api-routes.js");
 var techRoutes = require("./server/controllers/tech-api-routes.js");
