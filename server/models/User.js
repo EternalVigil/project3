@@ -1,9 +1,7 @@
 var mongoose = require('mongoose');
 var bcrypt = require("bcryptjs");
 var Schema = mongoose.Schema;
-
-
-//Todo: 
+ 
 var UserSchema = new Schema({
 	
 	firstName: { 
@@ -52,7 +50,8 @@ var UserSchema = new Schema({
 
 }, {
 	timestamps: {createdAt: "createdAt", updatedAt: "updatedAt"},
-	toJSON: {getters: true} //both path and virtual getters
+	toJSON: {getters: true}, //both path and virtual getters
+	id: false
 }
 );
 

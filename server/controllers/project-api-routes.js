@@ -23,7 +23,6 @@ router.post('/api', function(req, res) {
 		currentProject: req.body.currentProject,
 		githubSource: req.body.githubSource
 	})
-	.exec()
 	.then(function(project) {
 		console.log("Created new project.");
 		res.json(project);

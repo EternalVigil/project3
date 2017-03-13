@@ -36,7 +36,8 @@ var IdeaSchema = new Schema({
 
 }, {
 	timestamps: {createdAt: "createdAt", updatedAt: "updatedAt"},
-	toJSON: {getters: true} //both path and virtual getters
+	toJSON: {getters: true}, //both path and virtual getters
+	id: false
 });
 
 var Idea = mongoose.model("Idea", IdeaSchema);

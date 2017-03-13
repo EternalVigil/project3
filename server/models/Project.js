@@ -36,7 +36,8 @@ var ProjectSchema = new Schema({
 
 }, {
 	timestamps: {createdAt: "createdAt", updatedAt: "updatedAt"},
-	toJSON: {getters: true} //both path and virtual getters
+	toJSON: {getters: true}, //both path and virtual getters
+	id: false
 });
 
 var Project = mongoose.model("Project", ProjectSchema);

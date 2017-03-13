@@ -13,12 +13,10 @@ var TechSchema = new Schema({
 		enum: ["language", "library", "database", "framework", "environment", "orm"]
 	},
 	frontend:{
-		type: Schema.Types.Boolean,
-		required: true
+		type: Schema.Types.Boolean
 	},
 	backend: {
-		type: Schema.Types.Boolean,
-		required: true
+		type: Schema.Types.Boolean
 	},
 	documentation: [{
 		type: Schema.Types.Mixed
@@ -38,7 +36,8 @@ var TechSchema = new Schema({
 	
 }, {
 	timestamps: {createdAt: "createdAt", updatedAt: "updatedAt"},
-	toJSON: {getters: true} //both path and virtual getters
+	toJSON: {getters: true}, //both path and virtual getters
+	id: false
 });
 
 var Tech = mongoose.model("Tech", TechSchema);

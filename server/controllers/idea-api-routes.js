@@ -24,7 +24,6 @@ router.post('/api', function(req, res) {
 		githubExample: req.body.githubExample,
 		timeFrame: req.body.timeFrame
 	})
-	.exec()
 	.then(function(idea) {
 		console.log("Created new idea.");
 		res.json(idea);

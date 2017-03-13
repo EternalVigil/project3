@@ -24,7 +24,6 @@ router.post('/api', function(req, res) {
 		backend: req.body.backend,
 		documentation: req.body.documentation
 	})
-	.exec()
 	.then(function(tech) {
 		console.log("Created new tech.");
 		res.json(tech);
@@ -34,23 +33,25 @@ router.post('/api', function(req, res) {
 });
 
 //Test: Update tech and show in api
-router.put('/api/:id', function(req, res) {
- 	Tech.findOneAndUpdate({
+router.patch('/api/:id', function(req, res) {
+ 	Tech.update({
 		_id: req.params.id
 	},
 	{	$set: { 
-			name: req.body.name,
-			techType: req.body.techType,
+			// name: req.body.name,
+			// techType: req.body.techType,
 			frontend: req.body.frontend,
 			backend: req.body.backend
-		}, 
-		$push: { 
-			"documentation": req.body.documentation,
-			"users": req.body._id,
-			"ideas": req.body._id,
-			"projects": req.body._id
 		}
-	}, {upsert: true})
+		// }, 
+		// $push: { 
+		// 	"documentation": req.body.documentation,
+		// 	"users": req.body._id,
+		// 	"ideas": req.body._id,
+		// 	"projects": req.body._id
+		// }
+	// }, {upsert: true})
+	})
 	.exec()
 	.then(function(tech) {
 		console.log("Updated tech.");

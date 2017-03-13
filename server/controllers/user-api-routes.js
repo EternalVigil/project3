@@ -25,7 +25,6 @@ router.post('/api', function(req, res) {
 		email: req.body.email,
 		github: req.body.github
 	})
-	.exec()
 	.then(function(user) {
 		console.log("Created new user.");
 		res.json(user);
