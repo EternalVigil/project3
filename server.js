@@ -1,5 +1,7 @@
 // Include Server Dependencies
 // -------------------------------------------------
+var React = require('react');
+
 var express = require("express");
 var bodyParser = require("body-parser");
 var expressValidator = require('express-validator');
@@ -10,7 +12,10 @@ var mongoose = require("mongoose");
 // var morgan = require("morgan");
 var passport = require("passport");
 var path = require("path");
+
 var session = require("express-session");
+var controllers = require ('./server/controllers');
+
 
 // Create Instance of Express
 // -------------------------------------------------
@@ -90,24 +95,23 @@ app.use(function (req, res, next) {
 
 // Middleware for Routes
 // -------------------------------------------------
+var users = require('./server/controllers/user.js');
+var routes = require('./server/controllers/index.js');
 var ideaRoutes = require("./server/controllers/idea-api-routes.js");
 var projectRoutes = require("./server/controllers/project-api-routes.js");
 var techRoutes = require("./server/controllers/tech-api-routes.js");
 var userRoutes = require("./server/controllers/user-api-routes.js");
 
-var users = require("./server/controllers/user.js");
-var routes = require("./server/controllers/index.js");
-
+app.use('/', routes);
+app.use('/users', users);
 app.use("/idea", ideaRoutes);
 app.use("/project", projectRoutes);
 app.use("/tech", techRoutes);
 app.use("/user", userRoutes);
 
-app.use("/users", users);
-app.use("/", routes);
-
 // app.use("/", controllers);
-
+app.use(express.static(path.join(__dirname, 'static')));
+app.get("*", express.static(path.join(__dirname, './public/index.html')));
 
 // Listener
 // -------------------------------------------------

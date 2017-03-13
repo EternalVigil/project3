@@ -21,4 +21,9 @@ class App extends Component{
 	}
 }
 
-exports default App;
+App.propTypes = {
+	children: PropTypes.node,
+	routes: PropTypes.array
+}
+
+export default App;
