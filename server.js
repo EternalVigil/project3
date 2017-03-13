@@ -4,16 +4,18 @@ var React = require('react');
 
 var express = require("express");
 var bodyParser = require("body-parser");
-// var cookieParser = require("cookie-parser");
-// var flash = require("connect-flash");
-// var LocalStrategy = require("passport-local").Strategy;
+var expressValidator = require('express-validator');
+var cookieParser = require("cookie-parser");
+var flash = require("connect-flash");
+var LocalStrategy = require("passport-local").Strategy;
 var mongoose = require("mongoose");
 // var morgan = require("morgan");
-// var passport = require("passport");
+var passport = require("passport");
 var path = require("path");
 
 var session = require("express-session");
 var controllers = require ('./server/controllers');
+
 
 // Create Instance of Express
 // -------------------------------------------------
@@ -26,6 +28,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+app.use(cookieParser());
 
 // Static Directory
 // -------------------------------------------------
@@ -46,10 +49,49 @@ db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
 
+// Express Session
+app.use(session({
+    secret: 'secret',
+    saveUninitialized: true,
+    resave: true
+}));
+
 // Passport Initialization
 // -------------------------------------------------
 // Francis' part
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Express Validator
+app.use(expressValidator({
+  errorFormatter: function(param, msg, value) {
+      var namespace = param.split('.')
+      , root    = namespace.shift()
+      , formParam = root;
+
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    };
+  }
+}));
+
+// Connect Flash
+app.use(flash());
+
+// Global Vars
+app.use(function (req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.user = req.user || null;
+  next();
+});
 
 // Middleware for Routes
 // -------------------------------------------------
@@ -60,18 +102,16 @@ var projectRoutes = require("./server/controllers/project-api-routes.js");
 var techRoutes = require("./server/controllers/tech-api-routes.js");
 var userRoutes = require("./server/controllers/user-api-routes.js");
 
-app.use('/users', users);
 app.use('/', routes);
-
+app.use('/users', users);
 app.use("/idea", ideaRoutes);
 app.use("/project", projectRoutes);
 app.use("/tech", techRoutes);
 app.use("/user", userRoutes);
 
+// app.use("/", controllers);
 app.use(express.static(path.join(__dirname, 'static')));
-
 app.get("*", express.static(path.join(__dirname, './public/index.html')));
-
 
 // Listener
 // -------------------------------------------------
